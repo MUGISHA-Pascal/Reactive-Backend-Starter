@@ -23,10 +23,10 @@
 	</properties>
 
 	<dependencies>
-		<!-- Spring Boot Starter Data JPA -->
+		<!-- Spring Boot Starter Data R2DBC -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<artifactId>spring-boot-starter-data-r2dbc</artifactId>
 		</dependency>
 
 		<!-- Spring Boot Starter Security -->
@@ -34,21 +34,25 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
+		<!-- Spring Boot Starter Actuator -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
+		<!-- Spring Boot DevTools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- Spring Boot Starter Web -->
+
+		<!-- Spring Boot Starter WebFlux -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-
 
 		<!-- Spring Boot Starter Validation -->
 		<dependency>
@@ -226,6 +230,39 @@
 <!--			<version>4.13.2</version>-->
 <!--			<scope>test</scope>-->
 <!--		</dependency>-->
+
+		<!-- Add r2dbc-postgresql -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>r2dbc-postgresql</artifactId>
+			<version>[0.8.13.RELEASE,)</version>
+		</dependency>
+
+		<!-- Add Spring Boot Starter AOP for AspectJ support -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+		<!-- Add Jakarta Persistence API -->
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
+		<!-- Add Hibernate Core for annotations -->
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>6.4.4.Final</version>
+		</dependency>
+
+		<!-- Add Spring Boot Starter Data JPA for JPA support -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 
 	</dependencies>
 

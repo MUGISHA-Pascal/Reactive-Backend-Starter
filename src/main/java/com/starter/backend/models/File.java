@@ -1,19 +1,25 @@
 package com.starter.backend.models;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table("files")
 public class File {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private String filename;
-    @Lob
-    private byte[] file;
+    private String fileName;
+    private String fileType;
+    private String filePath;
+    private Long fileSize;
+    private LocalDateTime uploadedAt;
+    private UUID uploadedBy;
 }

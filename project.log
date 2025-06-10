@@ -794,3 +794,345 @@ Consider defining a bean named 'entityManagerFactory' in your configuration.
 2025-06-10T14:35:03.632+02:00  INFO 4362 --- [backend] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-06-10T14:35:03.637+02:00  INFO 4362 --- [backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-06-10T14:35:03.649+02:00  INFO 4362 --- [backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-06-10T15:10:58.432+02:00  INFO 19894 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : Starting BackendApplication using Java 23.0.2 with PID 19894 (/media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter/target/classes started by pascal in /media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter)
+2025-06-10T15:10:58.436+02:00  INFO 19894 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : The following 1 profile is active: "dev"
+2025-06-10T15:10:58.532+02:00  INFO 19894 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-10T15:10:58.533+02:00  INFO 19894 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-10T15:11:01.022+02:00  INFO 19894 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-10T15:11:01.025+02:00  INFO 19894 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2025-06-10T15:11:01.084+02:00  INFO 19894 --- [backend] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data R2DBC - Could not safely identify store assignment for repository candidate interface com.starter.backend.repository.FileRepository; If you want this repository to be a R2DBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table (preferred), or consider extending one of the following types with your repository: org.springframework.data.r2dbc.repository.R2dbcRepository
+2025-06-10T15:11:01.087+02:00  INFO 19894 --- [backend] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data R2DBC - Could not safely identify store assignment for repository candidate interface com.starter.backend.repository.InventoryRepository; If you want this repository to be a R2DBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table (preferred), or consider extending one of the following types with your repository: org.springframework.data.r2dbc.repository.R2dbcRepository
+2025-06-10T15:11:01.090+02:00  INFO 19894 --- [backend] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data R2DBC - Could not safely identify store assignment for repository candidate interface com.starter.backend.repository.ProductRepository; If you want this repository to be a R2DBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table (preferred), or consider extending one of the following types with your repository: org.springframework.data.r2dbc.repository.R2dbcRepository
+2025-06-10T15:11:01.094+02:00  INFO 19894 --- [backend] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data R2DBC - Could not safely identify store assignment for repository candidate interface com.starter.backend.repository.RoleRepository; If you want this repository to be a R2DBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table (preferred), or consider extending one of the following types with your repository: org.springframework.data.r2dbc.repository.R2dbcRepository
+2025-06-10T15:11:01.098+02:00  INFO 19894 --- [backend] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data R2DBC - Could not safely identify store assignment for repository candidate interface com.starter.backend.repository.UserRepository; If you want this repository to be a R2DBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table (preferred), or consider extending one of the following types with your repository: org.springframework.data.r2dbc.repository.R2dbcRepository
+2025-06-10T15:11:01.099+02:00  INFO 19894 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 0 R2DBC repository interfaces.
+2025-06-10T15:11:03.371+02:00  INFO 19894 --- [backend] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-06-10T15:11:03.421+02:00  INFO 19894 --- [backend] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-10T15:11:03.422+02:00  INFO 19894 --- [backend] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-06-10T15:11:03.520+02:00  INFO 19894 --- [backend] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-10T15:11:03.521+02:00  INFO 19894 --- [backend] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4987 ms
+2025-06-10T15:11:03.983+02:00 ERROR 19894 --- [backend] [restartedMain] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthFilter': Unsatisfied dependency expressed through field 'tokenProvider': Error creating bean with name 'jwtTokenProvider': Unsatisfied dependency expressed through field 'userRepository': No qualifying bean of type 'com.starter.backend.repository.UserRepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2025-06-10T15:11:04.030+02:00  INFO 19894 --- [backend] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-06-10T15:11:04.051+02:00  WARN 19894 --- [backend] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-06-10T15:11:04.074+02:00  INFO 19894 --- [backend] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-10T15:11:04.111+02:00 ERROR 19894 --- [backend] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field userRepository in com.starter.backend.security.JwtTokenProvider required a bean of type 'com.starter.backend.repository.UserRepository' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.starter.backend.repository.UserRepository' in your configuration.
+
+2025-06-10T15:40:47.501+02:00  INFO 38413 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : Starting BackendApplication using Java 23.0.2 with PID 38413 (/media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter/target/classes started by pascal in /media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter)
+2025-06-10T15:40:47.505+02:00  INFO 38413 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : The following 1 profile is active: "dev"
+2025-06-10T15:40:47.694+02:00  INFO 38413 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-10T15:40:47.695+02:00  INFO 38413 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-10T15:40:51.549+02:00  INFO 38413 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-10T15:40:51.564+02:00  INFO 38413 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2025-06-10T15:40:51.890+02:00  INFO 38413 --- [backend] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data R2DBC - Could not safely identify store assignment for repository candidate interface com.starter.backend.repository.FileRepository; If you want this repository to be a R2DBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table (preferred), or consider extending one of the following types with your repository: org.springframework.data.r2dbc.repository.R2dbcRepository
+2025-06-10T15:40:52.742+02:00  WARN 38413 --- [backend] [restartedMain] .i.s.PathMatchingResourcePatternResolver : Failed to search in directory [/media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter/target/classes/com/starter/backend] for files matching pattern [**/*Impl.class]: java.io.UncheckedIOException: java.nio.file.NoSuchFileException: /media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter/target/classes/com/starter/backend/repository/InventoryRepository.class
+2025-06-10T15:40:52.776+02:00  WARN 38413 --- [backend] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Cannot parse com.starter.backend.repository.UserRoleRepository metadata
+2025-06-10T15:40:52.828+02:00  INFO 38413 --- [backend] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-10T15:40:52.905+02:00 ERROR 38413 --- [backend] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanDefinitionStoreException: Cannot parse com.starter.backend.repository.UserRoleRepository metadata
+	at org.springframework.data.repository.config.FragmentMetadata.getClassMetadata(FragmentMetadata.java:87) ~[spring-data-commons-3.4.4.jar:3.4.4]
+	at org.springframework.data.repository.config.FragmentMetadata.getFragmentInterfaces(FragmentMetadata.java:55) ~[spring-data-commons-3.4.4.jar:3.4.4]
+	at org.springframework.data.repository.config.RepositoryBeanDefinitionBuilder.discoverFragments(RepositoryBeanDefinitionBuilder.java:246) ~[spring-data-commons-3.4.4.jar:3.4.4]
+	at org.springframework.data.repository.config.RepositoryBeanDefinitionBuilder.registerRepositoryFragmentsImplementation(RepositoryBeanDefinitionBuilder.java:236) ~[spring-data-commons-3.4.4.jar:3.4.4]
+	at org.springframework.data.repository.config.RepositoryBeanDefinitionBuilder.registerRepositoryFragments(RepositoryBeanDefinitionBuilder.java:217) ~[spring-data-commons-3.4.4.jar:3.4.4]
+	at org.springframework.data.repository.config.RepositoryBeanDefinitionBuilder.build(RepositoryBeanDefinitionBuilder.java:144) ~[spring-data-commons-3.4.4.jar:3.4.4]
+	at org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:179) ~[spring-data-commons-3.4.4.jar:3.4.4]
+	at org.springframework.boot.autoconfigure.data.AbstractRepositoryConfigurationSourceSupport.registerBeanDefinitions(AbstractRepositoryConfigurationSourceSupport.java:62) ~[spring-boot-autoconfigure-3.4.3.jar:3.4.3]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.lambda$loadBeanDefinitionsFromRegistrars$1(ConfigurationClassBeanDefinitionReader.java:397) ~[spring-context-6.2.5.jar:6.2.5]
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:987) ~[na:na]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsFromRegistrars(ConfigurationClassBeanDefinitionReader.java:396) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:149) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:121) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:430) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.4.3.jar:3.4.3]
+	at com.starter.backend.BackendApplication.main(BackendApplication.java:14) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.4.3.jar:3.4.3]
+Caused by: java.io.FileNotFoundException: class path resource [com/starter/backend/repository/UserRoleRepository.class] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:215) ~[spring-core-6.2.5.jar:6.2.5]
+	at org.springframework.core.type.classreading.SimpleMetadataReader.getClassReader(SimpleMetadataReader.java:54) ~[spring-core-6.2.5.jar:6.2.5]
+	at org.springframework.core.type.classreading.SimpleMetadataReader.<init>(SimpleMetadataReader.java:48) ~[spring-core-6.2.5.jar:6.2.5]
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:103) ~[spring-core-6.2.5.jar:6.2.5]
+	at org.springframework.core.type.classreading.CachingMetadataReaderFactory.getMetadataReader(CachingMetadataReaderFactory.java:122) ~[spring-core-6.2.5.jar:6.2.5]
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:81) ~[spring-core-6.2.5.jar:6.2.5]
+	at org.springframework.data.repository.config.FragmentMetadata.getClassMetadata(FragmentMetadata.java:85) ~[spring-data-commons-3.4.4.jar:3.4.4]
+	... 28 common frames omitted
+
+2025-06-10T15:45:21.128+02:00  INFO 41576 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : Starting BackendApplication using Java 23.0.2 with PID 41576 (/media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter/target/classes started by pascal in /media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter)
+2025-06-10T15:45:21.134+02:00  INFO 41576 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : The following 1 profile is active: "dev"
+2025-06-10T15:45:21.349+02:00  INFO 41576 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-10T15:45:21.350+02:00  INFO 41576 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-10T15:45:25.782+02:00  INFO 41576 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-10T15:45:25.789+02:00  INFO 41576 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2025-06-10T15:45:25.910+02:00  INFO 41576 --- [backend] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data R2DBC - Could not safely identify store assignment for repository candidate interface com.starter.backend.repository.FileRepository; If you want this repository to be a R2DBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table (preferred), or consider extending one of the following types with your repository: org.springframework.data.r2dbc.repository.R2dbcRepository
+2025-06-10T15:45:26.287+02:00  INFO 41576 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 476 ms. Found 5 R2DBC repository interfaces.
+2025-06-10T15:45:29.060+02:00  INFO 41576 --- [backend] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-06-10T15:45:29.106+02:00  INFO 41576 --- [backend] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-10T15:45:29.108+02:00  INFO 41576 --- [backend] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-06-10T15:45:29.226+02:00  INFO 41576 --- [backend] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-10T15:45:29.227+02:00  INFO 41576 --- [backend] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7876 ms
+2025-06-10T15:45:30.303+02:00  WARN 41576 --- [backend] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfig': Unsatisfied dependency expressed through field 'customUserDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.starter.backend.repository.UserRepository defined in @EnableR2dbcRepositories declared on R2dbcRepositoriesAutoConfigureRegistrar.EnableR2dbcRepositoriesConfiguration: Cannot resolve reference to bean 'r2dbcEntityTemplate' while setting bean property 'entityOperations'
+2025-06-10T15:45:30.317+02:00  INFO 41576 --- [backend] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-06-10T15:45:30.386+02:00  INFO 41576 --- [backend] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-10T15:45:30.454+02:00 ERROR 41576 --- [backend] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a ConnectionFactory: 'url' attribute is not specified and no embedded database could be configured.
+
+Reason: Failed to determine a suitable R2DBC Connection URL
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (the profiles dev are currently active).
+
+2025-06-10T15:47:53.360+02:00  INFO 43141 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : Starting BackendApplication using Java 23.0.2 with PID 43141 (/media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter/target/classes started by pascal in /media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter)
+2025-06-10T15:47:53.369+02:00  INFO 43141 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : The following 1 profile is active: "dev"
+2025-06-10T15:47:53.574+02:00  INFO 43141 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-10T15:47:53.575+02:00  INFO 43141 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-10T15:47:57.374+02:00  INFO 43141 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-10T15:47:57.382+02:00  INFO 43141 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2025-06-10T15:47:57.493+02:00  INFO 43141 --- [backend] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data R2DBC - Could not safely identify store assignment for repository candidate interface com.starter.backend.repository.FileRepository; If you want this repository to be a R2DBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table (preferred), or consider extending one of the following types with your repository: org.springframework.data.r2dbc.repository.R2dbcRepository
+2025-06-10T15:47:57.868+02:00  INFO 43141 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 469 ms. Found 5 R2DBC repository interfaces.
+2025-06-10T15:48:00.226+02:00  INFO 43141 --- [backend] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-06-10T15:48:00.284+02:00  INFO 43141 --- [backend] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-10T15:48:00.286+02:00  INFO 43141 --- [backend] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-06-10T15:48:00.418+02:00  INFO 43141 --- [backend] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-10T15:48:00.420+02:00  INFO 43141 --- [backend] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6844 ms
+2025-06-10T15:48:02.378+02:00  INFO 43141 --- [backend] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-06-10T15:48:03.302+02:00  WARN 43141 --- [backend] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authController': Unsatisfied dependency expressed through field 'authenticationManager': No qualifying bean of type 'org.springframework.security.authentication.AuthenticationManager' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2025-06-10T15:48:03.343+02:00  INFO 43141 --- [backend] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-06-10T15:48:03.398+02:00  INFO 43141 --- [backend] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-10T15:48:03.483+02:00 ERROR 43141 --- [backend] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field authenticationManager in com.starter.backend.controllers.AuthController required a bean of type 'org.springframework.security.authentication.AuthenticationManager' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.authentication.AuthenticationManager' in your configuration.
+
+2025-06-10T15:54:51.218+02:00  INFO 47611 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : Starting BackendApplication using Java 23.0.2 with PID 47611 (/media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter/target/classes started by pascal in /media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter)
+2025-06-10T15:54:51.222+02:00  INFO 47611 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : The following 1 profile is active: "dev"
+2025-06-10T15:54:51.364+02:00  INFO 47611 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-10T15:54:51.365+02:00  INFO 47611 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-10T15:54:54.147+02:00  INFO 47611 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-10T15:54:54.154+02:00  INFO 47611 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2025-06-10T15:54:54.228+02:00  INFO 47611 --- [backend] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data R2DBC - Could not safely identify store assignment for repository candidate interface com.starter.backend.repository.FileRepository; If you want this repository to be a R2DBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table (preferred), or consider extending one of the following types with your repository: org.springframework.data.r2dbc.repository.R2dbcRepository
+2025-06-10T15:54:54.492+02:00  INFO 47611 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 322 ms. Found 5 R2DBC repository interfaces.
+2025-06-10T15:54:56.050+02:00  INFO 47611 --- [backend] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-06-10T15:54:56.076+02:00  INFO 47611 --- [backend] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-10T15:54:56.077+02:00  INFO 47611 --- [backend] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-06-10T15:54:56.144+02:00  INFO 47611 --- [backend] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-10T15:54:56.144+02:00  INFO 47611 --- [backend] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4778 ms
+2025-06-10T15:54:57.336+02:00  INFO 47611 --- [backend] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-06-10T15:54:58.296+02:00  WARN 47611 --- [backend] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'fileController': Unsatisfied dependency expressed through field 'fIleService': Error creating bean with name 'FIleService': Unsatisfied dependency expressed through field 'fileRepository': No qualifying bean of type 'com.starter.backend.repository.FileRepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2025-06-10T15:54:58.326+02:00  INFO 47611 --- [backend] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-06-10T15:54:58.371+02:00  INFO 47611 --- [backend] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-10T15:54:58.414+02:00 ERROR 47611 --- [backend] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field fileRepository in com.starter.backend.services.FIleService required a bean of type 'com.starter.backend.repository.FileRepository' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.starter.backend.repository.FileRepository' in your configuration.
+
+2025-06-10T15:57:37.745+02:00  INFO 49441 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : Starting BackendApplication using Java 23.0.2 with PID 49441 (/media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter/target/classes started by pascal in /media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter)
+2025-06-10T15:57:37.748+02:00  INFO 49441 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : The following 1 profile is active: "dev"
+2025-06-10T15:57:37.798+02:00  INFO 49441 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-10T15:57:37.798+02:00  INFO 49441 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-10T15:57:38.687+02:00  INFO 49441 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-10T15:57:38.689+02:00  INFO 49441 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2025-06-10T15:57:38.785+02:00  INFO 49441 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 91 ms. Found 6 R2DBC repository interfaces.
+2025-06-10T15:57:39.401+02:00  INFO 49441 --- [backend] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-06-10T15:57:39.411+02:00  INFO 49441 --- [backend] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-10T15:57:39.412+02:00  INFO 49441 --- [backend] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-06-10T15:57:39.437+02:00  INFO 49441 --- [backend] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-10T15:57:39.438+02:00  INFO 49441 --- [backend] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1639 ms
+2025-06-10T15:57:39.842+02:00  INFO 49441 --- [backend] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-06-10T15:57:40.657+02:00  WARN 49441 --- [backend] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaAuditingHandler': Cannot resolve reference to bean 'jpaMappingContext' while setting constructor argument
+2025-06-10T15:57:40.669+02:00  INFO 49441 --- [backend] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-06-10T15:57:40.682+02:00  INFO 49441 --- [backend] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-10T15:57:40.691+02:00 ERROR 49441 --- [backend] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaAuditingHandler': Cannot resolve reference to bean 'jpaMappingContext' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:691) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:513) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:347) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.4.3.jar:3.4.3]
+	at com.starter.backend.BackendApplication.main(BackendApplication.java:14) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.4.3.jar:3.4.3]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaMappingContext': JPA metamodel must not be empty
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1812) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:347) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.2.5.jar:6.2.5]
+	... 26 common frames omitted
+Caused by: java.lang.IllegalArgumentException: JPA metamodel must not be empty
+	at org.springframework.util.Assert.notEmpty(Assert.java:398) ~[spring-core-6.2.5.jar:6.2.5]
+	at org.springframework.data.jpa.mapping.JpaMetamodelMappingContext.<init>(JpaMetamodelMappingContext.java:57) ~[spring-data-jpa-3.4.4.jar:3.4.4]
+	at org.springframework.data.jpa.repository.config.JpaMetamodelMappingContextFactoryBean.createInstance(JpaMetamodelMappingContextFactoryBean.java:68) ~[spring-data-jpa-3.4.4.jar:3.4.4]
+	at org.springframework.data.jpa.repository.config.JpaMetamodelMappingContextFactoryBean.createInstance(JpaMetamodelMappingContextFactoryBean.java:1) ~[spring-data-jpa-3.4.4.jar:3.4.4]
+	at org.springframework.beans.factory.config.AbstractFactoryBean.afterPropertiesSet(AbstractFactoryBean.java:142) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808) ~[spring-beans-6.2.5.jar:6.2.5]
+	... 33 common frames omitted
+
+2025-06-10T16:01:27.637+02:00  INFO 51899 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : Starting BackendApplication using Java 23.0.2 with PID 51899 (/media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter/target/classes started by pascal in /media/pascal/AE86B21786B1E04F/Users/pc/Documents/projects/github-workshop/reactive-backend-starter)
+2025-06-10T16:01:27.640+02:00  INFO 51899 --- [backend] [restartedMain] com.starter.backend.BackendApplication   : The following 1 profile is active: "dev"
+2025-06-10T16:01:27.687+02:00  INFO 51899 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-10T16:01:27.687+02:00  INFO 51899 --- [backend] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-10T16:01:28.639+02:00  INFO 51899 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-10T16:01:28.642+02:00  INFO 51899 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2025-06-10T16:01:28.752+02:00  INFO 51899 --- [backend] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 105 ms. Found 6 R2DBC repository interfaces.
+2025-06-10T16:01:29.441+02:00  INFO 51899 --- [backend] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-06-10T16:01:29.450+02:00  INFO 51899 --- [backend] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-10T16:01:29.450+02:00  INFO 51899 --- [backend] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-06-10T16:01:29.475+02:00  INFO 51899 --- [backend] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-10T16:01:29.476+02:00  INFO 51899 --- [backend] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1788 ms
+2025-06-10T16:01:29.940+02:00  INFO 51899 --- [backend] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-06-10T16:01:30.864+02:00  WARN 51899 --- [backend] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaAuditingHandler': Cannot resolve reference to bean 'jpaMappingContext' while setting constructor argument
+2025-06-10T16:01:30.878+02:00  INFO 51899 --- [backend] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-06-10T16:01:30.893+02:00  INFO 51899 --- [backend] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-10T16:01:30.907+02:00 ERROR 51899 --- [backend] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaAuditingHandler': Cannot resolve reference to bean 'jpaMappingContext' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:691) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:513) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:347) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.4.3.jar:3.4.3]
+	at com.starter.backend.BackendApplication.main(BackendApplication.java:14) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.4.3.jar:3.4.3]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaMappingContext': JPA metamodel must not be empty
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1812) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:347) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.2.5.jar:6.2.5]
+	... 26 common frames omitted
+Caused by: java.lang.IllegalArgumentException: JPA metamodel must not be empty
+	at org.springframework.util.Assert.notEmpty(Assert.java:398) ~[spring-core-6.2.5.jar:6.2.5]
+	at org.springframework.data.jpa.mapping.JpaMetamodelMappingContext.<init>(JpaMetamodelMappingContext.java:57) ~[spring-data-jpa-3.4.4.jar:3.4.4]
+	at org.springframework.data.jpa.repository.config.JpaMetamodelMappingContextFactoryBean.createInstance(JpaMetamodelMappingContextFactoryBean.java:68) ~[spring-data-jpa-3.4.4.jar:3.4.4]
+	at org.springframework.data.jpa.repository.config.JpaMetamodelMappingContextFactoryBean.createInstance(JpaMetamodelMappingContextFactoryBean.java:1) ~[spring-data-jpa-3.4.4.jar:3.4.4]
+	at org.springframework.beans.factory.config.AbstractFactoryBean.afterPropertiesSet(AbstractFactoryBean.java:142) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859) ~[spring-beans-6.2.5.jar:6.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808) ~[spring-beans-6.2.5.jar:6.2.5]
+	... 33 common frames omitted
+

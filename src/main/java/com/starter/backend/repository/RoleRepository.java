@@ -2,14 +2,13 @@ package com.starter.backend.repository;
 
 import com.starter.backend.enums.ERoleType;
 import com.starter.backend.models.Role;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.r2dbc.repository.Query;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import reactor.core.publisher.Mono;
 
-import java.util.Optional;
 import java.util.UUID;
 
-@Repository
-public interface RoleRepository  extends JpaRepository<Role, UUID> {
-
-    Optional<Role> findByName(ERoleType roleType);
+public interface RoleRepository extends ReactiveCrudRepository<Role, UUID> {
+    @Query("SELECT * FROM role WHERE name = :name")
+    Mono<Role> findByName(ERoleType name);
 }

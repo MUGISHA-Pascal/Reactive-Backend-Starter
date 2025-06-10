@@ -8,12 +8,15 @@ import com.starter.backend.repository.ProductRepository;
 import com.starter.backend.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.*;
+import java.util.UUID;
 
 @Service
 public class ProductService {
@@ -24,12 +27,11 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getAllProducts(){
+    public Flux<Product> getAllProducts(){
         return productRepository.findAll();
     }
 
-    public Product addProduct(ProductDto productDto){
-        System.out.println("product log in service"+productDto.getInventory().getLocation());
+    public Mono<Product> addProduct(ProductDto productDto){
         Product product = new Product(
                 productDto.getName(),
                 productDto.getDescription(),
@@ -42,39 +44,42 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Product getProduct(UUID id){
+    public Mono<Product> getProduct(UUID id){
         return productRepository.findById(id)
-                .orElseThrow(() -> new ApiRequestException("Product with id " + id + " not found"));
+                .switchIfEmpty(Mono.error(new ApiRequestException("Product with id " + id + " not found")));
     }
 
-    public Product updateProduct(UUID id, ProductDto productDto){
-
-        Product existingProduct = productRepository.findById(id)
-                .orElseThrow(() -> new ApiRequestException("Product with id " + id + " not found"));
-
-        existingProduct.setName(productDto.getName());
-        existingProduct.setDescription(productDto.getDescription());
-        existingProduct.setPrice(productDto.getPrice());
-        existingProduct.setQuantity(productDto.getQuantity());
-        existingProduct.setCategory(productDto.getCategory());
-        Inventory inventory = new Inventory(productDto.getInventory().getQuantity(), productDto.getInventory().getLocation());
-       existingProduct.setInventory(inventory);
-        return productRepository.save(existingProduct);
+    public Mono<Product> updateProduct(UUID id, ProductDto productDto){
+        return productRepository.findById(id)
+                .switchIfEmpty(Mono.error(new ApiRequestException("Product with id " + id + " not found")))
+                .flatMap(existingProduct -> {
+                    existingProduct.setName(productDto.getName());
+                    existingProduct.setDescription(productDto.getDescription());
+                    existingProduct.setPrice(productDto.getPrice());
+                    existingProduct.setCategory(productDto.getCategory());
+                    
+                    Inventory inventory = new Inventory(productDto.getInventory().getQuantity(), productDto.getInventory().getLocation());
+                    existingProduct.updateInventory(inventory);
+                    
+                    return productRepository.save(existingProduct);
+                });
     }
 
-    public void deleteProduct(UUID id){
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ApiRequestException("Product with id " + id + " not found"));
-        productRepository.delete(product);
+    public Mono<Void> deleteProduct(UUID id){
+        return productRepository.findById(id)
+                .switchIfEmpty(Mono.error(new ApiRequestException("Product with id " + id + " not found")))
+                .flatMap(productRepository::delete);
     }
-    public List<Product> findProductsByCategory(String category){
-        List<Product> products = productRepository.findByCategory(category);
-        return products;
+
+    public Flux<Product> findProductsByCategory(String category){
+        return productRepository.findByCategory(category);
     }
-    public Page<Product> productsPagination(int page,int size,String column){
-        Constants.validatePageNumberAndPageSize(page,size);
-        Pageable pageable =(Pageable) PageRequest.of(page,size, Sort.Direction.ASC,column);
-        Page<Product> products = productRepository.findAll(pageable);
-        return products;
+
+    public Mono<Page<Product>> productsPagination(int page, int size, String column){
+        Constants.validatePageNumberAndPageSize(page, size);
+        Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, column);
+        return productRepository.findAll()
+                .collectList()
+                .map(products -> new PageImpl<>(products, pageable, products.size()));
     }
 }

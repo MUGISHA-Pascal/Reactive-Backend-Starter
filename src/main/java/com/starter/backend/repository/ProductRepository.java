@@ -1,15 +1,12 @@
 package com.starter.backend.repository;
 
 import com.starter.backend.models.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
 import java.util.UUID;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, UUID> {
-    @Query(value="SELECT * from Product where category = :category",nativeQuery = true)
-    List<Product> findByCategory(String category);
+public interface ProductRepository extends ReactiveCrudRepository<Product, UUID> {
+    Flux<Product> findByCategory(String category);
 }

@@ -6,6 +6,7 @@ import com.starter.backend.services.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
@@ -14,8 +15,9 @@ import java.util.UUID;
 public class InventoryController {
     @Autowired
     InventoryService inventoryService;
+
     @PutMapping("/update/{id}")
-    public ResponseEntity<Product> updateInventory(@PathVariable("id") UUID id, @RequestBody UpdateInventoryDto updateInventoryDto) {
-        return inventoryService.updateInventory(id,updateInventoryDto);
+    public Mono<ResponseEntity<Product>> updateInventory(@PathVariable("id") UUID id, @RequestBody UpdateInventoryDto updateInventoryDto) {
+        return inventoryService.updateInventory(id, updateInventoryDto);
     }
 }

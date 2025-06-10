@@ -7,8 +7,9 @@ import com.starter.backend.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,37 +24,38 @@ public class ProductController {
     }
 
     @GetMapping("/order")
-    public Page<Product> getPaginatedAndSortedProducts(@RequestParam(value = "page" ,defaultValue = Constants.DEFAULT_PAGE_NUMBER) int page, @RequestParam(value = "size",defaultValue = Constants.DEFAULT_PAGE_SIZE) int size, @RequestParam(value = "column") String column){
-        return productService.productsPagination(page,size,column);
+    public Mono<Page<Product>> getPaginatedAndSortedProducts(@RequestParam(value = "page", defaultValue = Constants.DEFAULT_PAGE_NUMBER) int page, @RequestParam(value = "size", defaultValue = Constants.DEFAULT_PAGE_SIZE) int size, @RequestParam(value = "column") String column){
+        return productService.productsPagination(page, size, column);
     }
+
     @GetMapping
-    public List<Product> getAllProducts(){
+    public Flux<Product> getAllProducts(){
         return productService.getAllProducts();
     }
+
     @GetMapping("/category/{category}")
-    public List<Product> getAllProductsByCategory(@PathVariable String category){
+    public Flux<Product> getAllProductsByCategory(@PathVariable String category){
         return this.productService.findProductsByCategory(category);
     }
 
     @GetMapping("/{id}")
-    public Product getProduct(@PathVariable UUID id){
+    public Mono<Product> getProduct(@PathVariable UUID id){
         return productService.getProduct(id);
     }
 
     @PostMapping
-    public Product addProduct(@RequestBody ProductDto productDto){
+    public Mono<Product> addProduct(@RequestBody ProductDto productDto){
         return productService.addProduct(productDto);
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable UUID id, @RequestBody ProductDto productDto){
-        System.out.println("called");
+    public Mono<Product> updateProduct(@PathVariable UUID id, @RequestBody ProductDto productDto){
         return productService.updateProduct(id, productDto);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteProduct(@PathVariable UUID id){
-        productService.deleteProduct(id);
-        return "Product with id " + id + " has been deleted successfully.";
+    public Mono<String> deleteProduct(@PathVariable UUID id){
+        return productService.deleteProduct(id)
+                .then(Mono.just("Product with id " + id + " has been deleted successfully."));
     }
 }

@@ -1,26 +1,44 @@
 package com.starter.backend.services;
 
+import com.starter.backend.exceptions.ResourceNotFoundException;
 import com.starter.backend.models.File;
 import com.starter.backend.repository.FileRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+import reactor.core.publisher.Mono;
 
-import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class FIleService {
-    @Autowired
-    private FileRepository fileRepository;
-    public File storeFile(MultipartFile file) throws IOException {
-      File newFile = new File();
-      newFile.setFilename(file.getOriginalFilename());
-      newFile.setFile(file.getBytes());
-     return fileRepository.save(newFile);
-    }
-    public File getFile(UUID id){
-        return fileRepository.findById(id).orElse(null);
+    private final FileRepository fileRepository;
+
+    public Mono<File> storeFile(String fileName, String fileType, String filePath, Long fileSize, UUID uploadedBy) {
+        File newFile = new File();
+        newFile.setFileName(fileName);
+        newFile.setFileType(fileType);
+        newFile.setFilePath(filePath);
+        newFile.setFileSize(fileSize);
+        newFile.setUploadedBy(uploadedBy);
+        newFile.setUploadedAt(LocalDateTime.now());
+        return fileRepository.save(newFile);
     }
 
-}
+    public Mono<File> getFile(UUID id) {
+        return fileRepository.findById(id)
+            .switchIfEmpty(Mono.error(new ResourceNotFoundException("File", "id", id.toString())));
+    }
+
+    public Mono<File> getFileByName(String fileName) {
+        return fileRepository.findByFileName(fileName)
+            .switchIfEmpty(Mono.error(new ResourceNotFoundException("File", "name", fileName)));
+    }
+
+    public Mono<Void> deleteFile(UUID id) {
+        return fileRepository.findById(id)
+            .switchIfEmpty(Mono.error(new ResourceNotFoundException("File", "id", id.toString())))
+            .flatMap(fileRepository::delete);
+    }
+} 

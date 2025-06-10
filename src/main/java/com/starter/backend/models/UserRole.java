@@ -1,6 +1,5 @@
 package com.starter.backend.models;
 
-import com.starter.backend.enums.ERoleType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,13 +11,15 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table("role")
-public class Role {
+@Table("user_roles")
+public class UserRole {
     @Id
     private UUID id;
-    private ERoleType name;
+    private UUID userId;
+    private UUID roleId;
 
-    public Role(ERoleType name) {
-        this.name = name;
+    public UserRole(UUID userId, UUID roleId) {
+        this.userId = userId;
+        this.roleId = roleId;
     }
-}
+} 
