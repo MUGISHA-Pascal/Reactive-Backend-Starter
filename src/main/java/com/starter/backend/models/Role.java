@@ -12,7 +12,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table("role")
+@Table("roles")
 public class Role {
     @Id
     private UUID id;

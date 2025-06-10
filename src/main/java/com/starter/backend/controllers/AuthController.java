@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
@@ -36,15 +37,16 @@ public class AuthController {
                 loginRequest.getPassword()
             )
         )
-        .flatMap(auth -> tokenProvider.generateToken(auth)
-            .map(jwt -> ResponseEntity.ok(new JwtAuthResponse(jwt))));
+        .flatMap(authentication -> 
+            tokenProvider.generateToken(authentication)
+                .map(jwt -> ResponseEntity.ok(new JwtAuthResponse(jwt)))
+        );
     }
 
     @PostMapping("/signup")
     public Mono<ResponseEntity<Response>> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         return userService.createUser(signUpRequest)
             .map(user -> ResponseEntity.ok(new Response("User registered successfully!")))
-            .onErrorResume(e -> Mono.just(ResponseEntity.badRequest()
-                .body(new Response("Error: " + e.getMessage()))));
+            .onErrorResume(e -> Mono.just(ResponseEntity.badRequest().body(new Response("Error: " + e.getMessage()))));
     }
 }

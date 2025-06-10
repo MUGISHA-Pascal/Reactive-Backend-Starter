@@ -1,22 +1,26 @@
 package com.starter.backend.security;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.server.ServerAuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
 
 @Component
-public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
-    private  static final Logger logger = LoggerFactory.getLogger(JwtAuthEntryPoint.class);
+public class JwtAuthEntryPoint implements ServerAuthenticationEntryPoint {
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthEntryPoint.class);
+
     @Override
-    public void commence( HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        logger.error("responding with unauthorized error.message - {}",e.getMessage());
-        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED,"Sorry , you are not authorised to access this resource"+e.getMessage());
+    public Mono<Void> commence(ServerWebExchange exchange, AuthenticationException e) {
+        logger.error("Responding with unauthorized error. Message - {}", e.getMessage());
+        exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+        return exchange.getResponse().writeWith(
+            Mono.just(exchange.getResponse()
+                .bufferFactory()
+                .wrap(("Sorry, you are not authorized to access this resource: " + e.getMessage()).getBytes()))
+        );
     }
 }

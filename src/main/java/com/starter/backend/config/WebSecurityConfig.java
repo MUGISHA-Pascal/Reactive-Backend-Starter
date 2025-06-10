@@ -1,14 +1,13 @@
 package com.starter.backend.config;
 
 import com.starter.backend.security.CustomUserDetailsService;
-import com.starter.backend.security.JwtAuthFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
-import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,13 +20,19 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebFluxSecurity
+@EnableReactiveMethodSecurity
 public class WebSecurityConfig {
 
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
-    @Autowired
-    private JwtAuthFilter jwtAuthFilter;
+    @Bean
+    public ReactiveAuthenticationManager authenticationManager() {
+        UserDetailsRepositoryReactiveAuthenticationManager authenticationManager = 
+            new UserDetailsRepositoryReactiveAuthenticationManager(customUserDetailsService);
+        authenticationManager.setPasswordEncoder(passwordEncoder());
+        return authenticationManager;
+    }
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
@@ -40,17 +45,10 @@ public class WebSecurityConfig {
                 .pathMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .anyExchange().authenticated()
             )
-            .addFilterAt(jwtAuthFilter, SecurityWebFiltersOrder.AUTHENTICATION);
+            .httpBasic(basic -> basic.disable())
+            .formLogin(form -> form.disable());
 
         return http.build();
-    }
-
-    @Bean
-    public ReactiveAuthenticationManager authenticationManager() {
-        UserDetailsRepositoryReactiveAuthenticationManager authenticationManager = 
-            new UserDetailsRepositoryReactiveAuthenticationManager(customUserDetailsService);
-        authenticationManager.setPasswordEncoder(passwordEncoder());
-        return authenticationManager;
     }
 
     @Bean
@@ -61,10 +59,11 @@ public class WebSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:[*]", "http://127.0.0.1:[*]"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With"));
         configuration.setExposedHeaders(Arrays.asList("Authorization"));
+        configuration.setAllowCredentials(true);
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

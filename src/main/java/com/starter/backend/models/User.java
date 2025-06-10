@@ -36,11 +36,4 @@ public class User {
         this.gender = gender;
         this.password = password;
     }
-
-    public void addRole(Role role) {
-        if (roles == null) {
-            roles = new HashSet<>();
-        }
-        roles.add(role);
-    }
 }

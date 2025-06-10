@@ -1,7 +1,6 @@
 package com.starter.backend.controllers;
 
 import com.starter.backend.models.Message;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -12,27 +11,27 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ChatController {
 
-    private final SimpMessagingTemplate template;
-    public ChatController(SimpMessagingTemplate template) {
-        this.template = template;
+    private final SimpMessagingTemplate messagingTemplate;
+
+    public ChatController(SimpMessagingTemplate messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
     }
-    @MessageMapping("/send")
-    @SendTo("/topic/messages")
-    public Message sendMessage(Message message){
+
+    @MessageMapping("/chat.send")
+    @SendTo("/topic/public")
+    public Message sendMessage(@Payload Message message) {
         return message;
     }
-    @MessageMapping("/private-message")
+
+    @MessageMapping("/chat.private")
     public void sendPrivateMessage(@Payload Message message, SimpMessageHeaderAccessor headerAccessor) {
-        // Access the current user's identity (username)
-        String sender = (String) headerAccessor.getSessionAttributes().get("username");
-        message.setSender(sender);  // Set the sender to the current authenticated user
-
-        // Send the private message to the recipient
-//        template.convertAndSendToUser(
-//                message.getRecipient(),  // recipient username
-//                "/queue/messages",       // destination queue
-//                message                  // message payload
-//        );
+        String sender = headerAccessor.getUser().getName();
+        message.setSender(sender);
+        
+        messagingTemplate.convertAndSendToUser(
+            message.getReceiver(),
+            "/queue/private",
+            message
+        );
     }
-
 }

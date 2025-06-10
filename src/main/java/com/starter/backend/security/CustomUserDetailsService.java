@@ -18,17 +18,19 @@ public class CustomUserDetailsService implements ReactiveUserDetailsService {
 
     public Mono<UserDetails> loadUserById(UUID id) {
         return userRepository.findById(id)
-                .switchIfEmpty(Mono.error(new UsernameNotFoundException("User not found with id: " + id)))
-                .map(UserPrincipal::create);
+                .map(UserPrincipal::create)
+                .cast(UserDetails.class)
+                .switchIfEmpty(Mono.error(new UsernameNotFoundException("User not found with id: " + id)));
     }
 
     @Override
     public Mono<UserDetails> findByUsername(String username) {
         return userRepository.findByEmail(username)
-                .switchIfEmpty(Mono.error(new UsernameNotFoundException("User not found with email: " + username)))
                 .map(user -> {
                     System.out.println("User in the user details service: " + user.getPassword());
                     return UserPrincipal.create(user);
-                });
+                })
+                .cast(UserDetails.class)
+                .switchIfEmpty(Mono.error(new UsernameNotFoundException("User not found with email: " + username)));
     }
 }

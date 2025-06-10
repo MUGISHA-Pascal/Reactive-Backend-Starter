@@ -28,36 +28,29 @@ public class JwtAuthFilter implements WebFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        String jwt = getJwtFromRequest(exchange);
-
-        if (!StringUtils.hasText(jwt)) {
-            return chain.filter(exchange);
-        }
-
-        if (!tokenProvider.validateToken(jwt)) {
-            return chain.filter(exchange);
-        }
-
         try {
-            String userId = tokenProvider.getUserIdFromToken(jwt);
-            logger.debug("User ID in token: {}", userId);
+            String jwt = getJwtFromRequest(exchange);
 
-            return customUserDetailsService.loadUserById(UUID.fromString(userId))
-                    .flatMap(userDetails -> {
+            if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
+                String userId = tokenProvider.getUserIdFromToken(jwt);
+                logger.debug("User ID in token: {}", userId);
+
+                return customUserDetailsService.loadUserById(UUID.fromString(userId))
+                    .map(userDetails -> {
                         UsernamePasswordAuthenticationToken authentication = 
                             new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                        
-                        return chain.filter(exchange)
-                            .contextWrite(ReactiveSecurityContextHolder.withAuthentication(authentication));
+                        return authentication;
                     })
-                    .onErrorResume(e -> {
-                        logger.error("Could not set user authentication in security context", e);
-                        return chain.filter(exchange);
-                    });
+                    .flatMap(authentication -> 
+                        chain.filter(exchange)
+                            .contextWrite(ReactiveSecurityContextHolder.withAuthentication(authentication))
+                    );
+            }
         } catch (Exception e) {
             logger.error("Could not set user authentication in security context", e);
-            return chain.filter(exchange);
         }
+
+        return chain.filter(exchange);
     }
 
     private String getJwtFromRequest(ServerWebExchange exchange) {

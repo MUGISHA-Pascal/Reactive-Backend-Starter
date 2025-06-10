@@ -23,10 +23,29 @@
 	</properties>
 
 	<dependencies>
+		<!-- Spring Boot Starter WebFlux -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
 		<!-- Spring Boot Starter Data R2DBC -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-r2dbc</artifactId>
+		</dependency>
+
+		<!-- R2DBC Core -->
+		<dependency>
+			<groupId>io.r2dbc</groupId>
+			<artifactId>r2dbc-spi</artifactId>
+		</dependency>
+
+		<!-- R2DBC PostgreSQL Driver -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>r2dbc-postgresql</artifactId>
+			<version>[0.8.13.RELEASE,)</version>
 		</dependency>
 
 		<!-- Spring Boot Starter Security -->
@@ -48,23 +67,10 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Spring Boot Starter WebFlux -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
-		</dependency>
-
 		<!-- Spring Boot Starter Validation -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-
-		<!-- PostgreSQL Driver -->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>[42.7.5,)</version>
 		</dependency>
 
 		<!-- Lombok for code simplicity -->
@@ -81,12 +87,11 @@
 			<scope>test</scope>
 		</dependency>
 
-
 		<!-- Swagger dependencies -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>[2.3.0,)</version> <!-- Or latest -->
+			<artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+			<version>[2.3.0,)</version>
 		</dependency>
 
 		<dependency>
@@ -96,14 +101,6 @@
 			<type>pom</type>
 			<scope>import</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-hibernate5-jakarta</artifactId>
-			<version>2.15.2</version> <!-- match your Jackson version -->
-		</dependency>
-
-
-
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -115,35 +112,23 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-websocket</artifactId>
-		</dependency>
-
-
-
-		<!--		<dependency>-->
-<!--			<groupId>org.springdoc</groupId>-->
-<!--			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
-<!--			<version>[2.1.0,)</version>-->
-<!--		</dependency>-->
 
 		<!-- Passay for password validation -->
 		<dependency>
 			<groupId>org.passay</groupId>
 			<artifactId>passay</artifactId>
-			<version>[1.6.0,)</version> <!-- Check for the latest version -->
+			<version>[1.6.0,)</version>
 		</dependency>
 
 		<!-- Guava for utility methods like Joiner -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>[31.1-jre,)</version> <!-- Check for the latest version -->
+			<version>[31.1-jre,)</version>
 		</dependency>
+
 		<!-- JJWT for JSON Web Token support -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -157,8 +142,6 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-
-
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-jackson</artifactId>
 			<version>[0.12.6,)</version>
@@ -178,90 +161,10 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-logging</artifactId>
-		</dependency>
-
-		<!-- Apache Commons Lang for utility classes -->
-<!--		<dependency>-->
-<!--			<groupId>org.apache.commons</groupId>-->
-<!--			<artifactId>commons-lang3</artifactId>-->
-<!--			<version>3.12.0</version>-->
-<!--		</dependency>-->
-
-
-
-		<!-- Apache Commons Text for string manipulation -->
-<!--		<dependency>-->
-<!--			<groupId>org.apache.commons</groupId>-->
-<!--			<artifactId>commons-text</artifactId>-->
-<!--			<version>1.9</version>-->
-<!--		</dependency>-->
-
-		<!-- Apache Commons Collections for collection utilities -->
-<!--		<dependency>-->
-<!--			<groupId>org.apache.commons</groupId>-->
-<!--			<artifactId>commons-collections4</artifactId>-->
-<!--			<version>4.4</version>-->
-<!--		</dependency>-->
-
-<!--		&lt;!&ndash; Spring Beans for bean management &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework</groupId>-->
-<!--			<artifactId>spring-beans</artifactId>-->
-<!--			<version>5.3.10</version>-->
-<!--		</dependency>-->
-
-<!--		&lt;!&ndash; JUnit Jupiter Engine for testing &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>org.junit.jupiter</groupId>-->
-<!--			<artifactId>junit-jupiter-engine</artifactId>-->
-<!--			<version>5.11.0</version>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
-
-
-
-<!--		&lt;!&ndash; JUnit for testing &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>junit</groupId>-->
-<!--			<artifactId>junit</artifactId>-->
-<!--			<version>4.13.2</version>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
-
-		<!-- Add r2dbc-postgresql -->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>r2dbc-postgresql</artifactId>
-			<version>[0.8.13.RELEASE,)</version>
-		</dependency>
-
 		<!-- Add Spring Boot Starter AOP for AspectJ support -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
-
-		<!-- Add Jakarta Persistence API -->
-		<dependency>
-			<groupId>jakarta.persistence</groupId>
-			<artifactId>jakarta.persistence-api</artifactId>
-			<version>3.1.0</version>
-		</dependency>
-
-		<!-- Add Hibernate Core for annotations -->
-		<dependency>
-			<groupId>org.hibernate.orm</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>6.4.4.Final</version>
-		</dependency>
-
-		<!-- Add Spring Boot Starter Data JPA for JPA support -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 	</dependencies>
@@ -276,10 +179,9 @@
 				<type>pom</type>
 			</dependency>
 		</dependencies>
-
 	</dependencyManagement>
+
 	<repositories>
-		<!-- Default Maven Central Repository (usually pre-configured) -->
 		<repository>
 			<id>central</id>
 			<name>Maven Central Repository</name>
@@ -292,6 +194,7 @@
 			</snapshots>
 		</repository>
 	</repositories>
+
 	<build>
 		<plugins>
 			<plugin>

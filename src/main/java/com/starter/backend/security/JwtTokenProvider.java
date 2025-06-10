@@ -37,6 +37,7 @@ public class JwtTokenProvider {
         }
 
         return userRepository.findById(userPrincipal.getId())
+                .switchIfEmpty(Mono.error(new RuntimeException("User not found")))
                 .map(authUser -> {
                     logger.debug("authUser in the Jwt auth Provider: {}", authUser);
                     return Jwts.builder()

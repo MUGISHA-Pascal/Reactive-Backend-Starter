@@ -32,7 +32,9 @@ public class FIleService {
     }
 
     public Mono<File> getFileByName(String fileName) {
-        return fileRepository.findByFileName(fileName)
+        return fileRepository.findAll()
+            .filter(file -> file.getFileName().equals(fileName))
+            .next()
             .switchIfEmpty(Mono.error(new ResourceNotFoundException("File", "name", fileName)));
     }
 
