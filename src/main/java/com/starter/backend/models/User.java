@@ -29,6 +29,7 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     public User(String email, String firstName, String lastName, String mobile, EGender gender, String password) {
+        this.id = UUID.randomUUID();
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;

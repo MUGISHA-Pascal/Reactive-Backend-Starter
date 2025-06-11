@@ -1,7 +1,7 @@
 package com.starter.backend.services;
 
 import com.starter.backend.exceptions.ResourceNotFoundException;
-import com.starter.backend.models.File;
+import com.starter.backend.models.FileEntity;
 import com.starter.backend.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,8 @@ import java.util.UUID;
 public class FIleService {
     private final FileRepository fileRepository;
 
-    public Mono<File> storeFile(String fileName, String fileType, String filePath, Long fileSize, UUID uploadedBy) {
-        File newFile = new File();
+    public Mono<FileEntity> storeFile(String fileName, String fileType, String filePath, Long fileSize, UUID uploadedBy) {
+        FileEntity newFile = new FileEntity();
         newFile.setFileName(fileName);
         newFile.setFileType(fileType);
         newFile.setFilePath(filePath);
@@ -26,12 +26,12 @@ public class FIleService {
         return fileRepository.save(newFile);
     }
 
-    public Mono<File> getFile(UUID id) {
+    public Mono<FileEntity> getFile(UUID id) {
         return fileRepository.findById(id)
             .switchIfEmpty(Mono.error(new ResourceNotFoundException("File", "id", id.toString())));
     }
 
-    public Mono<File> getFileByName(String fileName) {
+    public Mono<FileEntity> getFileByName(String fileName) {
         return fileRepository.findAll()
             .filter(file -> file.getFileName().equals(fileName))
             .next()

@@ -19,6 +19,7 @@ public class Role {
     private ERoleType name;
 
     public Role(ERoleType name) {
+        this.id = UUID.randomUUID();
         this.name = name;
     }
 }

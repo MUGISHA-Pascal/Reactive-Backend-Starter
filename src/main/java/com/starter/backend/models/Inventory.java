@@ -19,9 +19,4 @@ public class Inventory {
     private UUID id;
     private int quantity;
     private String location;
-
-    public Inventory(int quantity, String location) {
-        this.quantity = quantity;
-        this.location = location;
-    }
 }

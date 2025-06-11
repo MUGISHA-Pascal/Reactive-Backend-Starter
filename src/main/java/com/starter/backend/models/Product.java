@@ -24,13 +24,13 @@ public class Product {
     private UUID inventoryId;
     private String category;
 
-    public Product(String name, String description, int price, int quantity, String category, String inventoryLocation, int inventoryQuantity) {
+    public Product(String name, String description, int price, int quantity, String category) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
         this.category = category;
-        this.inventoryId = UUID.randomUUID(); // Generate a new UUID for inventory
     }
 
     public void updateInventory(Inventory inventory) {

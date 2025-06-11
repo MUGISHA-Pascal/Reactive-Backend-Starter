@@ -30,6 +30,7 @@ public class ProductController {
 
     @GetMapping
     public Flux<Product> getAllProducts(){
+        System.out.println("getAllProducts called");
         return productService.getAllProducts();
     }
 

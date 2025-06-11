@@ -1,7 +1,7 @@
 package com.starter.backend.controllers;
 
 import com.starter.backend.exceptions.ResourceNotFoundException;
-import com.starter.backend.models.File;
+import com.starter.backend.models.FileEntity;
 import com.starter.backend.payload.response.Response;
 import com.starter.backend.services.FIleService;
 import com.starter.backend.services.UserService;

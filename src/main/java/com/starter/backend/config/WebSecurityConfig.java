@@ -27,7 +27,7 @@ public class WebSecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeExchange(auth -> auth
                 .pathMatchers("/api/auth/**").permitAll()
-                .pathMatchers("/api/public/**").permitAll()
+                .pathMatchers("/api/**").permitAll()
                 .pathMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/webjars/**").permitAll()
                 .pathMatchers("/actuator/**").permitAll()
                 .anyExchange().authenticated()
