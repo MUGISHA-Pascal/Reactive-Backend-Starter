@@ -1,20 +1,22 @@
 package com.starter.backend.models;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-import java.util.UUID;
-
-@Getter
-@Setter
-@Table("messages")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Message {
-    @Id
-    private UUID id;
-    private String message;
     private String sender;
     private String receiver;
-    private String is_read;
+    private String content;
+    private MessageType type;
+    private long timestamp;
+
+    public enum MessageType {
+        CHAT,
+        JOIN,
+        LEAVE
+    }
 }

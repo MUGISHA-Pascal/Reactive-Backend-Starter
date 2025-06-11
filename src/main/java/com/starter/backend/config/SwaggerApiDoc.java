@@ -9,9 +9,12 @@ import io.swagger.v3.oas.models.Components;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.config.EnableWebFlux;
+import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 @Configuration
-public class SwaggerApiDoc {
+@EnableWebFlux
+public class SwaggerApiDoc implements WebFluxConfigurer {
 
     @Bean
     public OpenAPI customOpenAPI() {
@@ -38,5 +41,21 @@ public class SwaggerApiDoc {
                                         .type(SecurityScheme.Type.HTTP)
                                         .scheme("bearer")
                                         .bearerFormat("JWT")));
+    }
+
+    @Bean
+    public GroupedOpenApi publicApi() {
+        return GroupedOpenApi.builder()
+                .group("public")
+                .pathsToMatch("/api/public/**")
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi authApi() {
+        return GroupedOpenApi.builder()
+                .group("auth")
+                .pathsToMatch("/api/auth/**")
+                .build();
     }
 }
